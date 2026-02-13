@@ -2135,3 +2135,240 @@ button {
     border-color: #fff;
     color: #fff;
 }
+
+/* ============================================
+   HERO SPLIT PREMIUM (Fix)
+   ============================================ */
+.hero-split-premium {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 85vh;
+    background: #0f0f0f;
+    color: white;
+    margin-top: -20px;
+    overflow: hidden;
+}
+
+.hero-split-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-4xl);
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text-wrapper {
+    max-width: 600px;
+    margin-left: auto;
+    /* Align close to image center */
+    margin-right: var(--space-xl);
+}
+
+.hero-badge-pill {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--space-xl);
+}
+
+.hero-heading {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.02em;
+}
+
+.text-gradient-gold {
+    background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtext {
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: var(--space-2xl);
+    line-height: 1.6;
+    max-width: 480px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.btn-outline-light {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    background: transparent;
+}
+
+.btn-outline-light:hover {
+    border-color: white;
+    background: white;
+    color: black;
+}
+
+.hero-split-image {
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+}
+
+.hero-split-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 900px) {
+    .hero-split-premium {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .hero-split-content {
+        padding: var(--space-3xl) var(--space-xl);
+        text-align: center;
+        order: 2;
+    }
+
+    .hero-text-wrapper {
+        margin: 0 auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-split-image {
+        height: 50vh;
+        min-height: 400px;
+        order: 1;
+    }
+}
+
+/* ============================================
+   HERO LUXURY LIGHT (Final)
+   ============================================ */
+.hero-luxury-light {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 85vh;
+    background: #f8f9fa;
+    color: #1a1a2e;
+    margin-top: -20px;
+    overflow: hidden;
+}
+
+.hero-luxury-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-4xl);
+    position: relative;
+    z-index: 2;
+}
+
+.hero-badge-minimal {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #555;
+    margin-bottom: var(--space-xl);
+}
+
+.hero-heading-light {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.03em;
+    color: #1a1a2e;
+}
+
+.text-highlight-dark {
+    position: relative;
+    color: var(--color-primary);
+    display: inline-block;
+}
+
+.hero-subtext-light {
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    color: #4b5563;
+    margin-bottom: var(--space-2xl);
+    line-height: 1.6;
+    max-width: 480px;
+    font-weight: 500;
+}
+
+.btn-outline-dark {
+    border: 1px solid #1a1a2e;
+    color: #1a1a2e;
+    background: transparent;
+}
+
+.btn-outline-dark:hover {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+.hero-luxury-image {
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+    background: #f8f9fa;
+    /* Seamless match */
+}
+
+.hero-luxury-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Contain for full shoe visibility */
+    object-position: center;
+    transform: scale(0.9);
+    /* Give it room */
+    animation: float 6s ease-in-out infinite;
+}
+
+@media (max-width: 900px) {
+    .hero-luxury-light {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .hero-luxury-content {
+        padding: var(--space-3xl) var(--space-xl);
+        text-align: center;
+        order: 2;
+    }
+
+    .hero-luxury-image {
+        height: 45vh;
+        min-height: 350px;
+        order: 1;
+    }
+}
