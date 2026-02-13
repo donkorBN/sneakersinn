@@ -56,7 +56,7 @@ function createProductCard(product) {
       </a>
       <div class="product-info">
         <h3 class="product-name">${product.name}</h3>
-        <p class="product-price">${formatPrice(product.price)}</p>
+        <p class="product-price">${product.comingSoon ? 'Dropping Soon' : formatPrice(product.price)}</p>
         <div class="product-actions">
           <a href="product.html?id=${product.id}" class="btn btn-outline btn-sm">View Details</a>
           <a href="${whatsappUrl}" class="${buttonClass}">
@@ -185,7 +185,7 @@ export function renderProductDetail() {
       <div class="product-detail-info reveal">
         ${badge}
         <h1 class="detail-name">${product.name}</h1>
-        <p class="detail-price">${formatPrice(product.price)}</p>
+        <p class="detail-price">${product.comingSoon ? 'Dropping Soon' : formatPrice(product.price)}</p>
         <p class="detail-description">${product.description}</p>
         
         <!-- Urgency Markers -->
