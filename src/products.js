@@ -12,6 +12,12 @@ function formatPrice(price) {
     return `${CONFIG.CURRENCY}${price.toLocaleString()}`;
 }
 
+function getOrderDeadline() {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + 20);
+    return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
 // ---- Render Product Card ----
 function createProductCard(product) {
     const badge = product.badge
@@ -147,7 +153,25 @@ export function renderProductDetail() {
         <h1 class="detail-name">${product.name}</h1>
         <p class="detail-price">${formatPrice(product.price)}</p>
         <p class="detail-description">${product.description}</p>
+        
+        <!-- Urgency Markers -->
+        <div class="urgency-container">
+            <div class="urgency-item" style="color: #E85D04; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                <span class="pulse-dot"></span>
+                <span>${Math.floor(Math.random() * 7) + 2} people are watching this right now</span>
+            </div>
+            <div class="urgency-item" style="font-size: 0.9rem; margin-bottom: 8px;">
+                🔥 <strong>3 items left</strong> in stock
+            </div>
+            <div class="urgency-item" style="font-size: 0.9rem; color: #1B263B; background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #e9ecef;">
+                ⏰ Order before <strong>${getOrderDeadline()}</strong> to not miss out!
+            </div>
+        </div>
 
+        <style>
+            .pulse-dot { width: 8px; height: 8px; background: #E85D04; border-radius: 50%; display: inline-block; animation: pulse 1.5s infinite; }
+            @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(232, 93, 4, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(232, 93, 4, 0); } 100% { box-shadow: 0 0 0 0 rgba(232, 93, 4, 0); } }
+        </style>
         <div class="detail-sizes">
           <h3>Select Size</h3>
           <div class="size-options" id="size-options">
