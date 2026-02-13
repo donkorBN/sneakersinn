@@ -8,6 +8,35 @@ import { initScrollReveal } from './app.js';
 // Make orderOnWhatsApp available globally for onclick handlers
 window.orderOnWhatsApp = orderOnWhatsApp;
 
+// Make tracking available globally for inline handlers
+window.trackProductEvent = function (id, type) {
+    const product = PRODUCTS.find(p => p.id === id);
+    if (!product) return;
+
+    if (type === 'ViewContent') {
+        if (typeof fbq === 'function') {
+            fbq('track', 'ViewContent', {
+                content_ids: [product.id],
+                content_name: product.name,
+                currency: 'GHS',
+                value: product.price,
+                content_type: 'product'
+            });
+        }
+    } else if (type === 'InitiateCheckout') {
+        if (typeof fbq === 'function') {
+            fbq('track', 'InitiateCheckout', {
+                content_ids: [product.id],
+                content_name: product.name,
+                currency: 'GHS',
+                value: product.price,
+                content_type: 'product',
+                num_items: 1
+            });
+        }
+    }
+};
+
 function formatPrice(price) {
     return `${CONFIG.CURRENCY}${price.toLocaleString()}`;
 }
@@ -47,19 +76,23 @@ function createProductCard(product) {
     if (product.soldOut) overlay = '<div class="sold-out-overlay">SOLD OUT</div>';
     if (product.comingSoon) overlay = '<div class="coming-soon-overlay">DROPPING SOON</div>';
 
+    // Tracking attributes
+    const trackView = `onclick="if(window.trackProductEvent) window.trackProductEvent(${product.id}, 'ViewContent')"`;
+    const trackCheckout = `onclick="if(window.trackProductEvent) window.trackProductEvent(${product.id}, 'InitiateCheckout')"`;
+
     return `
     <div class="${cardWrapperClass}" data-category="${product.category}">
       ${badge}
       ${overlay}
-      <a href="/product/?id=${product.id}" class="product-image-link">
+      <a href="/product/?id=${product.id}" class="product-image-link" ${trackView}>
         <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" style="${product.soldOut ? 'filter: grayscale(100%); opacity: 0.8;' : ''}">
       </a>
       <div class="product-info">
         <h3 class="product-name">${product.name}</h3>
         <p class="product-price">${product.comingSoon ? 'Dropping Soon' : formatPrice(product.price)}</p>
         <div class="product-actions">
-          <a href="/product/?id=${product.id}" class="btn btn-outline btn-sm">View Details</a>
-          <a href="${whatsappUrl}" class="${buttonClass}">
+          <a href="/product/?id=${product.id}" class="btn btn-outline btn-sm" ${trackView}>View Details</a>
+          <a href="${whatsappUrl}" class="${buttonClass}" ${!product.soldOut && !product.comingSoon ? trackCheckout : ''}>
             ${buttonText}
           </a>
         </div>
@@ -136,7 +169,24 @@ function selectSize(btn, size) {
 // Make selectSize global for onclick in templates
 window.selectSize = selectSize;
 
+// Make handleOrder global for onclick in templates
+window.handleOrder = handleOrder;
+
 function handleOrder(productId) {
+    if (typeof fbq === 'function') {
+        const product = PRODUCTS.find(p => p.id === productId);
+        if (product) {
+            fbq('track', 'InitiateCheckout', {
+                content_ids: [product.id],
+                content_name: product.name,
+                currency: 'GHS',
+                value: product.price,
+                content_type: 'product',
+                num_items: 1
+            });
+        }
+    }
+
     if (!currentSelectedSize) {
         const error = document.getElementById('size-error');
         if (error) {
@@ -172,6 +222,28 @@ export function renderProductDetail() {
     }
 
     document.title = `${product.name} — ${CONFIG.STORE_NAME}`;
+
+    // Fire ViewContent event
+    if (typeof fbq === 'function') {
+        fbq('track', 'ViewContent', {
+            content_ids: [product.id],
+            content_name: product.name,
+            currency: 'GHS',
+            value: product.price,
+            content_type: 'product'
+        });
+    }
+
+    // Fire ViewContent event
+    if (typeof fbq === 'function') {
+        fbq('track', 'ViewContent', {
+            content_ids: [product.id],
+            content_name: product.name,
+            currency: 'GHS',
+            value: product.price,
+            content_type: 'product'
+        });
+    }
 
     const badge = product.badge
         ? `<span class="detail-badge">${product.badge}</span>`

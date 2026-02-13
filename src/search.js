@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 : generateWhatsAppLink(product);
 
             return `
-                <div class="search-result-item" onclick="window.location.href='/product/?id=${product.id}'">
+                <div class="search-result-item" onclick="if(window.trackProductEvent) window.trackProductEvent(${product.id}, 'ViewContent'); window.location.href='/product/?id=${product.id}'">
                     <img src="${product.image}" alt="${product.name}">
                     <div class="result-info">
                         <h4>${product.name}</h4>
