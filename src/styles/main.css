@@ -314,11 +314,13 @@ button {
     background: rgba(0, 0, 0, 0.25);
     z-index: 998;
     opacity: 0;
+    pointer-events: none;
     transition: opacity var(--transition-slow);
 }
 
 .menu-overlay.active {
     opacity: 1;
+    pointer-events: auto;
 }
 
 /* ============================================
@@ -335,10 +337,16 @@ button {
     font-size: var(--font-size-sm);
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    text-decoration: none;
     transition: all var(--transition-base);
     cursor: pointer;
     border: none;
     white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-height: 44px;
+    position: relative;
+    z-index: 1;
 }
 
 .btn-primary {
@@ -376,8 +384,9 @@ button {
 }
 
 .btn-sm {
-    padding: 8px 18px;
+    padding: 10px 18px;
     font-size: var(--font-size-xs);
+    min-height: 44px;
 }
 
 .btn-lg {
@@ -643,8 +652,9 @@ button {
 .product-actions .btn {
     width: 100%;
     justify-content: center;
-    padding: 10px 14px;
+    padding: 12px 14px;
     font-size: var(--font-size-xs);
+    min-height: 44px;
 }
 
 @media (min-width: 560px) {
@@ -1297,6 +1307,7 @@ button {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: auto;
 }
 
 .reveal.revealed {
@@ -1520,6 +1531,21 @@ button {
 
     .promo-banner h2 {
         font-size: var(--font-size-xl);
+    }
+
+    .product-actions {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .product-actions .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
+    }
+
+    body {
+        padding-bottom: 60px;
     }
 }
 
