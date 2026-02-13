@@ -8,3 +8,5 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFeaturedProducts();
     renderComingSoonProducts();
 });
+
+import './search.js';

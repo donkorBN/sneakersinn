@@ -2263,6 +2263,127 @@ button {
 }
 
 /* ============================================
+   SEARCH OVERLAY
+   ============================================ */
+.nav-search-icon {
+    cursor: pointer;
+    margin-right: var(--space-md);
+    color: var(--color-text);
+    transition: color 0.2s;
+}
+
+.nav-search-icon:hover {
+    color: var(--color-primary);
+}
+
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: none;
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+    color: var(--color-text);
+}
+
+.search-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 0 var(--space-md);
+}
+
+#search-input {
+    width: 100%;
+    font-size: 2rem;
+    border: none;
+    border-bottom: 2px solid #eee;
+    padding: var(--space-md) 0;
+    outline: none;
+    background: transparent;
+    margin-bottom: var(--space-xl);
+    font-weight: 700;
+}
+
+.search-results {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    transition: background 0.2s;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.search-result-item:hover {
+    background: #f9f9f9;
+}
+
+.search-result-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.result-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.result-price {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.search-empty {
+    text-align: center;
+    padding: var(--space-xl);
+}
+
+.search-empty p {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .search-results {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ============================================
    HERO LUXURY LIGHT (Final)
    ============================================ */
 .hero-luxury-light {
