@@ -24,7 +24,7 @@ function createProductCard(product) {
         ? `<span class="product-badge">${product.badge}</span>`
         : '';
 
-    const whatsappUrl = product.soldOut ? '#' : (product.comingSoon ? `product.html?id=${product.id}` : generateWhatsAppLink(product));
+    const whatsappUrl = product.soldOut ? '#' : (product.comingSoon ? `/product/?id=${product.id}` : generateWhatsAppLink(product));
 
     let cardWrapperClass = 'product-card reveal';
     if (product.soldOut) cardWrapperClass += ' sold-out';
@@ -51,14 +51,14 @@ function createProductCard(product) {
     <div class="${cardWrapperClass}" data-category="${product.category}">
       ${badge}
       ${overlay}
-      <a href="product.html?id=${product.id}" class="product-image-link">
+      <a href="/product/?id=${product.id}" class="product-image-link">
         <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" style="${product.soldOut ? 'filter: grayscale(100%); opacity: 0.8;' : ''}">
       </a>
       <div class="product-info">
         <h3 class="product-name">${product.name}</h3>
         <p class="product-price">${product.comingSoon ? 'Dropping Soon' : formatPrice(product.price)}</p>
         <div class="product-actions">
-          <a href="product.html?id=${product.id}" class="btn btn-outline btn-sm">View Details</a>
+          <a href="/product/?id=${product.id}" class="btn btn-outline btn-sm">View Details</a>
           <a href="${whatsappUrl}" class="${buttonClass}">
             ${buttonText}
           </a>
@@ -165,7 +165,7 @@ export function renderProductDetail() {
       <div class="not-found">
         <h2>Product Not Found</h2>
         <p>The product you're looking for doesn't exist.</p>
-        <a href="shop.html" class="btn btn-primary">Back to Shop</a>
+        <a href="/shop/" class="btn btn-primary">Back to Shop</a>
       </div>
     `;
         return;
