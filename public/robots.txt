@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sneakersinn.com/sitemap.xml
