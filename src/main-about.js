@@ -5,3 +5,5 @@ import { initApp } from './app.js';
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
 });
+
+import './search.js';

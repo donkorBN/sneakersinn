@@ -1,5 +1,6 @@
 // Entry point — Contact page
 import './styles/main.css';
+import './search.js';
 import { initApp } from './app.js';
 import { CONFIG } from './config.js';
 

@@ -5,6 +5,7 @@ import { renderShopGrid, initCategoryFilter } from './products.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
-    renderShopGrid();
     initCategoryFilter();
 });
+
+import './search.js';

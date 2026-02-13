@@ -12,6 +12,7 @@ export const CONFIG = {
         twitter: "#",
         tiktok: "#",
     },
+    PIXEL_ID: "YOUR_PIXEL_ID", // Replace with actual ID
 };
 
 // =============================================

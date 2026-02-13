@@ -7,3 +7,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
     renderProductDetail();
 });
+
+import './search.js';

@@ -85,6 +85,13 @@
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
+            <div class="nav-search-icon" onclick="openSearch()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
             </div>
@@ -97,6 +104,15 @@
         <a href="contact.html" class="nav-link">Contact</a>
     </div>
     <div class="menu-overlay" id="menu-overlay"></div>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <button class="search-close" onclick="closeSearch()">&times;</button>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for sneakers, style, or color...">
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
 
     <!-- Product Detail -->
     <section class="product-detail-section">
