@@ -1547,6 +1547,30 @@ button {
     body {
         padding-bottom: 60px;
     }
+
+    .values-grid {
+        gap: var(--space-md);
+        margin-top: var(--space-lg);
+    }
+
+    .value-card {
+        padding: var(--space-lg);
+        /* Keep vertical layout (default) */
+    }
+
+    .value-icon {
+        font-size: 2rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .value-card h3 {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--space-xs);
+    }
+
+    .value-card p {
+        font-size: var(--font-size-sm);
+    }
 }
 
 @media (max-width: 768px) {
