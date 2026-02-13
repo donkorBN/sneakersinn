@@ -1936,3 +1936,27 @@ button {
     cursor: not-allowed;
     background: #6c757d;
 }
+
+/* Override Coming Soon Styles */
+.product-card.coming-soon .product-image {
+    opacity: 1;
+    filter: none;
+}
+
+.coming-soon-overlay {
+    display: none !important;
+}
+
+.product-card.coming-soon .btn-whatsapp {
+    opacity: 1;
+    cursor: pointer;
+    background: #000;
+    border-color: #000;
+    color: #fff;
+    pointer-events: auto;
+}
+
+.product-card.coming-soon .btn-whatsapp:hover {
+    background: #333;
+    border-color: #333;
+}

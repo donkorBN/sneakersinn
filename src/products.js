@@ -24,14 +24,14 @@ function createProductCard(product) {
         ? `<span class="product-badge">${product.badge}</span>`
         : '';
 
-    const whatsappUrl = (product.soldOut || product.comingSoon) ? '#' : generateWhatsAppLink(product);
+    const whatsappUrl = product.soldOut ? '#' : (product.comingSoon ? `product.html?id=${product.id}` : generateWhatsAppLink(product));
 
     let cardWrapperClass = 'product-card reveal';
     if (product.soldOut) cardWrapperClass += ' sold-out';
     if (product.comingSoon) cardWrapperClass += ' coming-soon';
 
     let buttonClass = 'btn btn-whatsapp btn-sm';
-    if (product.soldOut || product.comingSoon) buttonClass += ' disabled';
+    if (product.soldOut) buttonClass += ' disabled';
 
     let buttonText = `
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -52,7 +52,7 @@ function createProductCard(product) {
       ${badge}
       ${overlay}
       <a href="product.html?id=${product.id}" class="product-image-link">
-        <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" style="${(product.soldOut || product.comingSoon) ? 'filter: grayscale(100%); opacity: 0.8;' : ''}">
+        <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" style="${product.soldOut ? 'filter: grayscale(100%); opacity: 0.8;' : ''}">
       </a>
       <div class="product-info">
         <h3 class="product-name">${product.name}</h3>
