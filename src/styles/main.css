@@ -694,6 +694,9 @@ button {
 /* ============================================
    CATEGORY CARDS
    ============================================ */
+/* ============================================
+   CATEGORY CARDS (Redesign)
+   ============================================ */
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -704,61 +707,100 @@ button {
     position: relative;
     border-radius: var(--radius-xl);
     overflow: hidden;
-    aspect-ratio: 4/3;
+    height: 480px;
+    /* Taller for dramatic effect */
     cursor: pointer;
+    text-decoration: none;
+    display: block;
+    box-shadow: var(--shadow-lg);
     transition: all var(--transition-base);
 }
 
 .category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
 }
 
-.category-card-bg {
+.category-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.category-card:hover .category-bg {
+    transform: scale(1.1);
+}
+
+.category-overlay {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-xl);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 1;
+    transition: background 0.3s ease;
 }
 
-.category-card.running .category-card-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.category-card.casual .category-card-bg {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.category-card.limited .category-card-bg {
-    background: linear-gradient(135deg, #E85D04 0%, #DC2626 100%);
+.category-card:hover .category-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.2) 100%);
 }
 
 .category-content {
-    position: relative;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
     z-index: 2;
-    text-align: center;
     color: #fff;
+    text-align: left;
+    width: calc(100% - 60px);
 }
 
-.category-icon {
-    font-size: 3rem;
-    margin-bottom: var(--space-md);
-}
-
-.category-name {
-    font-size: var(--font-size-xl);
-    font-weight: 800;
+.category-content h3 {
+    font-size: 2.5rem;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-xs);
+    margin: 0;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
     color: #fff;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.category-count {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: var(--font-size-sm);
+.category-content p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 8px 0 20px 0;
+    font-weight: 500;
+}
+
+.category-btn {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-btn {
+    border-color: #fff;
+    padding-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-card {
+        height: 380px;
+    }
+
+    .category-content h3 {
+        font-size: 2rem;
+    }
 }
 
 /* ============================================
